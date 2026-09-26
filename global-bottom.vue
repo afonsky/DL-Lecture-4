@@ -12,7 +12,7 @@
        <span v-html="$slidev.configs.author"></span> &nbsp;|&nbsp;
        <span v-html="$slidev.configs.title"></span> &nbsp;|&nbsp;
        <span v-html="$slidev.configs.subtitle"></span> &nbsp;|&nbsp;
-       HSE 2025/2026
+       HSE 2026/2027
       </div>
       <div class="flex-grow">&nbsp;</div>
       <div
