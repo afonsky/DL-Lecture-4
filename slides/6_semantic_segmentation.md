@@ -22,7 +22,7 @@ layout: center
 <br>
 <br>
 
-The aim of semantic segmentation: to classify each pixel of the input image (or video) into one of the predefined classes. In other words, given a colored image $\bm{I}_C \in \bm{R}^{M \times N \times C}$, we want to produce a probability mask $\bm{P} \in \bm{R}^{H \times W \times N_C}$ where $N_C$ is the number of predefined classes, $H \times W$ - height and width of the image.
+The aim of semantic segmentation: to classify each pixel of the input image (or video) into one of the predefined classes. In other words, given a colored image $\bm{I} \in \mathbb{R}^{H \times W \times 3}$, we want to produce a probability mask $\bm{P} \in \mathbb{R}^{H \times W \times N_C}$ where $N_C$ is the number of predefined classes, $H \times W$ - height and width of the image.
 
 ---
 
@@ -50,11 +50,11 @@ To reduce the domination of background pixels in the loss function, we use weigh
 
 ### Focal Loss
 
-<small>Focal loss is another loss function designed to address the problem of class imbalance. It originates from object detection problem, where the number of negative bounding boxes, i.e. boxes containing no objects, domiates the cross-entropy loss function.</small>
+<small>Focal loss is another loss function designed to address the problem of class imbalance. It originates from object detection problem, where the number of negative bounding boxes, i.e. boxes containing no objects, dominates the cross-entropy loss function.</small>
 
 Let $p$ be a probability of positive class $1$, and $y \in \{0, 1\}$ be the ground-truth class. The focal loss for binary classification is defined as:
 
-$L = -(1 - p)^\alpha \cdot y \cdot \mathrm{log} p - p^\alpha \cdot (1 - y) \cdot \mathrm{log} (1 - p)$, where $\alpha$ is a hyperparameter. 
+$L = -(1 - p)^\gamma \cdot y \cdot \mathrm{log} p - p^\gamma \cdot (1 - y) \cdot \mathrm{log} (1 - p)$, where $\gamma \ge 0$ is the focusing parameter ($\gamma = 0$: cross-entropy; [Lin et al., 2017](https://arxiv.org/abs/1708.02002) use $\gamma = 2$). 
 
 <span style="color:grey"><small> Based on the [CoTAI lecture](https://hackmd.io/@gianghoangcotai/ryCqF_uO8)</small></span>
 
@@ -65,7 +65,7 @@ $L = -(1 - p)^\alpha \cdot y \cdot \mathrm{log} p - p^\alpha \cdot (1 - y) \cdot
 
 ## Localization losses
 
-* DICE Loss: $L(\bm{P}, \bm{Y}) = \sum\limits_{c=0}^{N_C-1} L_C(\bm{P}, \bm{Y})$, where $L_c(\mathbf{P}, \mathbf{Y})=-\log\bigg(\frac{2\cdot |\mathbf{P}_{:,:,c} \circ \mathbf{Y}_{:,:,c}|}{|\mathbf{P}_{:,:,c}|+|\mathbf{Y}_{:,:,c}|}\bigg)$
+* Dice Loss: $L(\bm{P}, \bm{Y}) = \sum\limits_{c=0}^{N_C-1} L_C(\bm{P}, \bm{Y})$, where $L_c(\mathbf{P}, \mathbf{Y})=-\log\bigg(\frac{2\cdot |\mathbf{P}_{:,:,c} \circ \mathbf{Y}_{:,:,c}|}{|\mathbf{P}_{:,:,c}|+|\mathbf{Y}_{:,:,c}|}\bigg)$
 
 * Intersection over Union (IoU) Loss: $L(\bm{P}, \bm{Y}) = \sum\limits_{c=0}^{N_C-1} L_C(\bm{P}, \bm{Y})$, <br>where $L_c(\mathbf{P}, \mathbf{Y})=-\log\bigg(\frac{|\mathbf{P}_{:,:,c} \circ \mathbf{Y}_{:,:,c}|}{|\mathbf{P}_{:,:,c}|+|\mathbf{Y}_{:,:,c}|-|\mathbf{P}_{:,:,c} \circ \mathbf{Y}_{:,:,c}|}\bigg)$
 
@@ -95,7 +95,7 @@ $L = -(1 - p)^\alpha \cdot y \cdot \mathrm{log} p - p^\alpha \cdot (1 - y) \cdot
 <div class="grid grid-cols-[2fr_1fr]">
 <div>
 
-#### Boundary Loss. [Hausdorff Distance](https://en.wikipedia.org/wiki/Hausdorff_distance):
+#### Boundary Loss. [Hausdorff Distance](https://en.wikipedia.org/wiki/Hausdorff_distance) ([Karimi & Salcudean, 2019](https://arxiv.org/abs/1904.10030)):
 * Distance map $\bm{D} \in \bm{R}^{H \times W}$,<br> where $\bm{D}_{ij}$ indicates the distance<br> from pixel $(i,j)$ to its nearest boundary point.
 * Given the distance map $\bm{D}$, we normalize it to $[0,1]$ by $\forall(i,j),\mathbf{D}_{ij}=\frac{\mathbf{D}_{ij} - \min_{st} \mathbf{D}_{st}}{\max_{st} \mathbf{D}_{st} - \min_{st} \mathbf{D}_{st}}$
 </div>

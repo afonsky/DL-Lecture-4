@@ -2,7 +2,12 @@
 layout: center
 ---
 
+<center>
+
 # Math of Convolutional Layer
+
+# The derivation, step by step (d2l 7.1)
+</center>
 
 ---
 zoom: 0.92
@@ -35,8 +40,9 @@ $$[\mathbf{H}]_{i, j} = [\mathbf{U}]_{i, j} + \sum_k \sum_l[\mathsf{W}]_{i, j, k
 
 #### Re-indexing using $k = i+a$, $l = j+b$:
 
-$$[\mathbf{H}]_{i, j} = [\mathbf{U}]_{i, j} +
-\sum_a \sum_b [\mathsf{V}]_{i, j, a, b} [\mathbf{X}]_{i+a, j+b}$$
+$$
+[\mathbf{H}]_{i, j} = [\mathbf{U}]_{i, j} + \sum_a \sum_b [\mathsf{V}]_{i, j, a, b} [\mathbf{X}]_{i+a, j+b}
+$$
 
 For translation invariance, $\mathsf{V}$ must not depend on $(i, j)$!
 
@@ -66,10 +72,11 @@ For translation invariance, $\mathsf{V}$ must not depend on $(i, j)$!
 ---
 
 # Mathematical Formulation of Translation Invariance
-<div></div>
+<center>
 
-$$\begin{aligned} \left[\mathbf{H}\right]_{i, j} &=  [\mathbf{U}]_{i, j} +
-\sum_a \sum_b [\mathsf{V}]_{i, j, a, b}  [\mathbf{X}]_{i+a, j+b}\end{aligned}$$
+$\begin{aligned} \left[\mathbf{H}\right]_{i, j} &=  [\mathbf{U}]_{i, j} +
+\sum_a \sum_b [\mathsf{V}]_{i, j, a, b}  [\mathbf{X}]_{i+a, j+b}\end{aligned}$
+</center>
 
 * We have $[\mathsf{V}]_{i, j, a, b} = [\mathbf{V}]_{a, b}$ and $\mathbf{U}$ is a constant, say $u$
 	* As a result, we can simplify the definition for $\mathbf{H}$:

@@ -51,11 +51,11 @@ src: ./slides/1_convolutional_layer.md
 ---
 
 ---
-src: ./slides/2_pooling_layer.md
+src: ./slides/2_padding_stride_channels.md
 ---
 
 ---
-src: ./slides/3_convolution_mathematically.md
+src: ./slides/3_pooling_layer.md
 ---
 
 ---
@@ -63,7 +63,23 @@ src: ./slides/4_CNNs.md
 ---
 
 ---
-src: ./slides/5_semantic_segmentation.md
+src: ./slides/5_conclusions.md
+---
+
+---
+src: ./slides/6_semantic_segmentation.md
+---
+
+---
+src: ./slides/0_backup.md
+---
+
+---
+src: ./slides/0_backup_math.md
+---
+
+---
+src: ./slides/0_backup_lecture5.md
 ---
 
 ---
