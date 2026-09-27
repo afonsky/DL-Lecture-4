@@ -72,7 +72,7 @@ zoom: 0.9
 <div>
 <center>
   <figure>
-    <img src="/conv_1D_1.gif" style="width: 350px !important;">
+    <img src="/conv_1D_1.gif" style="width: 410px !important;">
   </figure>
 </center>   
 </div>
@@ -138,7 +138,7 @@ The output is 3×3 because a 2×2 window fits in 3 positions along each axis of 
 -->
 
 ---
-zoom: 0.95
+zoom: 0.99
 ---
 
 # Cross-Correlation vs Convolution
@@ -245,7 +245,7 @@ Type your own kernel: [1 0 -1] rows give the vertical-edge detector.
 -->
 
 ---
-zoom: 0.85
+zoom: 0.96
 ---
 
 # Learning a Kernel from Data
@@ -307,7 +307,7 @@ Backprop through a convolution is itself a convolution (with the flipped kernel)
 -->
 
 ---
-zoom: 0.88
+zoom: 0.96
 ---
 
 # Convolutions: Key Properties

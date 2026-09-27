@@ -90,7 +90,7 @@ zoom: 0.82
 1. **Less computation** in the layers that follow
 2. **Grows the receptive field** quickly
 3. **Small shifts** of the input barely change the output
-4. A **smaller fully connected head**: LeNet's has 400 inputs, not 1,600
+4. A **smaller fully connected head**: LeNet's has $400$ inputs, not $1\,600$
 
 </div>
 <div>

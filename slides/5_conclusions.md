@@ -1,15 +1,17 @@
 ---
-zoom: 0.84
+zoom: 0.93
 ---
 
 # Conclusions: The Convolutional Layer
 
-<div class="grid grid-cols-2 gap-10">
+<div class="grid grid-cols-[6fr_4fr] gap-10">
 <div>
 
 ### Why
 * Images have **local motifs** and **location-independent statistics** → **locality** and **weight sharing**
 * A conv layer = a fully connected layer with most weights **zero** and the rest **shared**: $10^{12} \to 9$ parameters
+
+<br>
 
 ### How
 * Slide a $k\times k$ kernel, multiply elementwise, sum, add the bias: a **cross-correlation**
@@ -18,6 +20,8 @@ zoom: 0.84
 
 </div>
 <div>
+
+<br>
 
 ### Shapes and counts
 * $n_\text{out} = \left\lfloor (n + 2p - k)/s \right\rfloor + 1$; "same" padding $p = (k-1)/2$
@@ -29,7 +33,7 @@ zoom: 0.84
 </div>
 
 ---
-zoom: 0.88
+zoom: 0.92
 ---
 
 # Conclusions: Building a CNN
@@ -63,7 +67,7 @@ zoom: 0.88
 #### The one idea to take away: **the architecture is the prior.** Convolutions help exactly as much as the data really is local and translation-invariant.
 
 ---
-zoom: 0.64
+zoom: 0.7
 ---
 
 # Learn More from the Experts
@@ -80,4 +84,6 @@ zoom: 0.64
 
 #### Main text: [d2l.ai, Chapter 7 — Convolutional Neural Networks](https://d2l.ai/chapter_convolutional-neural-networks/index.html), sections 7.1–7.6
 
-### Next lecture: modern CNNs — AlexNet, VGG, NiN, GoogLeNet, batch normalization, ResNet, DenseNet ([d2l.ai, Ch. 8](https://d2l.ai/chapter_convolutional-modern/index.html))
+<br>
+
+#### Next lecture: modern CNNs — AlexNet, VGG, NiN, GoogLeNet, batch normalization, ResNet, DenseNet ([d2l.ai, Ch. 8](https://d2l.ai/chapter_convolutional-modern/index.html))

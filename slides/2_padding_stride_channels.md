@@ -10,7 +10,7 @@ layout: center
 </center>
 
 ---
-zoom: 0.93
+zoom: 0.95
 ---
 
 # Padding: Keeping the Border
@@ -19,7 +19,7 @@ zoom: 0.93
 <div>
 
 ### Without padding, every layer shrinks the map
-* A $k\times k$ kernel turns $n\times n$ into $(n-k+1)\times(n-k+1)$
+* A $k\times k$ kernel turns $n\times n$ into<br> $(n-k+1)\times(n-k+1)$
 * $240\times240$ through ten $5\times5$ layers → $200\times200$: **30 %** of the pixels gone
 * Corner pixels are used by just **one** window
 
@@ -34,7 +34,7 @@ zoom: 0.93
 <div>
 
 ### Zero padding
-* Add $p$ rows and columns of zeros on **each** side
+* Add $p$ rows and columns of zeros<br> on **each** side
 * **"Same" padding** $p = (k-1)/2$ keeps the size — one reason kernels are odd: $1, 3, 5, 7$
 
 <figure>
@@ -43,6 +43,8 @@ zoom: 0.93
     <a href="https://d2l.ai/chapter_convolutional-neural-networks/padding-and-strides.html">d2l.ai Fig. 7.3.2 Two-dimensional cross-correlation with padding</a>
   </figcaption>
 </figure>
+
+<br>
 
 ```python
 nn.Conv2d(1, 1, kernel_size=3, padding=1)       # 8x8 -> 8x8
@@ -62,7 +64,7 @@ padding="same" works for stride 1 only.
 -->
 
 ---
-zoom: 0.85
+zoom: 0.95
 ---
 
 # Stride and the Output Size
@@ -86,7 +88,7 @@ zoom: 0.85
 
 ### The formula you will use every week
 $$\boxed{\;n_\text{out} = \left\lfloor \frac{n + 2p - k}{s} \right\rfloor + 1\;}$$
-<small>$n$ input size, $k$ = `kernel_size`, $p$ = `padding` (per side), $s$ = `stride`</small>
+<small>$n$ input size, $k$ = `kernel_size`, $p$ = `padding` (per side),<br> $s$ = `stride`</small>
 
 <v-click>
 <div class="compact-table">
@@ -119,7 +121,7 @@ Height and width can use different k, p, s: apply the formula to each.
 -->
 
 ---
-zoom: 0.9
+zoom: 0.95
 ---
 
 # Try It: Convolution Playground
@@ -127,6 +129,8 @@ zoom: 0.9
 <ConvPlayground />
 
 <div class="mt-3" style="font-size: 0.72em">
+
+<br>
 
 **Hover** an output cell: its window (orange) × kernel = products → Σ &nbsp;·&nbsp; change **padding** and **stride** and check the formula &nbsp;·&nbsp; press **shift input →**: the output pattern moves with the input — **equivariance**
 
@@ -145,12 +149,14 @@ Live demo, 2-3 min.
 -->
 
 ---
-zoom: 0.84
+zoom: 0.86
 ---
 
 # Convolutional Layer: Multiple Channels
 
-A colour image has **3 input channels** (RGB), so each kernel has **one $k\times k$ slice per input channel**. The slices' results are **summed** (plus one bias) into **one** output channel; **$c_\text{out}$ kernels give $c_\text{out}$ output channels**.
+#### A colour image has **3 input channels** (RGB), so each kernel has **one $k\times k$ slice per input channel**. The slices' results are **summed** (plus one bias) into **one** output channel; **$c_\text{out}$ kernels give $c_\text{out}$ output channels**.
+
+<br>
 
 <div class="grid grid-cols-[5fr_3fr] gap-8">
 <div>
@@ -240,6 +246,8 @@ zoom: 0.95
 </div>
 </div>
 
+<br>
+
 <span class="refs">Read: [d2l.ai 7.4.3](https://d2l.ai/chapter_convolutional-neural-networks/channels.html#times-1-convolutional-layer) · [Lin, Chen & Yan, Network in Network (2013)](https://arxiv.org/abs/1312.4400) · Watch: [A. Ng, C4W2L05 Network in Network](https://www.youtube.com/watch?v=c1RBQzKsDCk)</span>
 
 <!--
@@ -250,7 +258,7 @@ The same map with a 3x3 kernel would need 9x as many weights - which is why bott
 -->
 
 ---
-zoom: 0.86
+zoom: 0.9
 ---
 
 # Counting Parameters and Compute
@@ -261,13 +269,13 @@ zoom: 0.86
 ### Parameters: independent of the image size
 $$\#\text{params} = (k^2\, c_\text{in} + 1)\, c_\text{out}$$
 
-* `nn.Conv2d(3, 64, 3)` on $224\times224$ RGB: $(9\cdot3+1)\cdot64 = 1{,}792$
+* `nn.Conv2d(3, 64, 3)` on $224\times224$ RGB: $(9\cdot3+1)\cdot64 = 1\,792$
 * A fully connected layer between the same input and output maps: $\approx 4.8\times10^{11}$
 
 <v-click>
 
 ### Karpathy's example *(CS231n)*
-AlexNet's first layer: $55\cdot55\cdot96 = 290{,}400$ units, $11\cdot11\cdot3 + 1 = 364$ parameters each. **105.7 M** without sharing, **34,944** with it
+AlexNet's first layer: $55\cdot55\cdot96 = 290\,400$ units, $11\cdot11\cdot3 + 1 = 364$ parameters each. $105.7 M$ without sharing, $34\,944$ with it
 
 </v-click>
 </div>
@@ -279,7 +287,7 @@ $$\#\text{multiply-adds} = h_\text{out}\, w_\text{out}\, c_\text{out} \cdot k^2 
 <v-clicks>
 
 * Every weight is reused at **every output position**
-* $256\times256$ image, $5\times5$ kernel, $128\to128$ channels: **26.8 G** multiply-adds, **one** layer *(d2l 7.4.4)*
+* $256\times256$ image, $5\times5$ kernel, $128\to128$ channels:<br> $26.8 G$ multiply-adds, **one** layer *(d2l 7.4.4)*
 * Few parameters, much arithmetic: a CNN can be **slower** than an MLP with more parameters
 
 </v-clicks>

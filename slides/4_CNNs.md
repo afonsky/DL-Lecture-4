@@ -38,8 +38,8 @@ zoom: 0.84
 </center>
 
 #### Architecture:
-* 2 conv layers, $5\times5$, with 6 and 16 channels; 2 pooling layers, $2\times2$, stride 2
-* 3 fully-connected layers: 120, 84, 10 — about **60,000** parameters
+* $2$ conv layers, $5\times5$, with $6$ and $16$ channels; $2$ pooling layers, $2\times2$, stride $2$
+* $3$ fully-connected layers: $120, 84, 10$ — about $60\,000$ parameters
 * **conv → pool → conv → pool → fully connected** is still the template
 
 </div>
@@ -66,7 +66,7 @@ zoom: 0.84
 -->
 
 ---
-zoom: 0.85
+zoom: 0.89
 ---
 
 # LeNet in PyTorch
@@ -134,7 +134,7 @@ Point back to Lecture 3's slide "An MLP in PyTorch": opt, loss_fn and the loop a
 -->
 
 ---
-zoom: 0.95
+zoom: 0.96
 ---
 
 # LeNet vs. Lecture 3's MLP on Fashion-MNIST
@@ -240,7 +240,7 @@ INPUT → [[CONV → RELU]*N → POOL?]*M → [FC → RELU]*K → FC
 * **CONV**: small kernels ($3\times3$, at most $5\times5$), stride 1, "same" padding — the size stays put
 * **POOL**: $2\times2$, stride 2 — where the size shrinks
 * **Channels up, resolution down**: e.g. $64 \to 128 \to 256$ while $224 \to 112 \to 56$
-* Two stacked $3\times3$ layers see $5\times5$, with fewer weights ($18c^2$ vs. $25c^2$) and one more ReLU
+* Two stacked $3\times3$ layers see $5\times5$, with fewer weights<br> ($18c^2$ vs. $25c^2$) and one more ReLU
 
 </div>
 <div>
@@ -303,7 +303,7 @@ layout: center
 </center>
 
 ---
-zoom: 0.86
+zoom: 0.9
 ---
 
 # Receptive Field
@@ -358,7 +358,7 @@ zoom: 0.86
 -->
 
 ---
-zoom: 0.86
+zoom: 0.9
 ---
 
 # What Do CNNs Learn?
